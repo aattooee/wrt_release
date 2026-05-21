@@ -60,10 +60,10 @@ apply_config() {
     \cp -f "$CONFIG_FILE" "$BASE_PATH/$BUILD_DIR/.config"
     
     # 如果是 ipq60xx 或 ipq807x 平台，则追加 NSS 配置
-    if grep -qE "(ipq60xx|ipq807x)" "$BASE_PATH/$BUILD_DIR/.config" &&
-        ! grep -q "CONFIG_GIT_MIRROR" "$BASE_PATH/$BUILD_DIR/.config"; then
-        cat "$BASE_PATH/deconfig/nss.config" >> "$BASE_PATH/$BUILD_DIR/.config"
-    fi
+    #if grep -qE "(ipq60xx|ipq807x)" "$BASE_PATH/$BUILD_DIR/.config" &&
+    #    ! grep -q "CONFIG_GIT_MIRROR" "$BASE_PATH/$BUILD_DIR/.config"; then
+    #    cat "$BASE_PATH/deconfig/nss.config" >> "$BASE_PATH/$BUILD_DIR/.config"
+    #fi
 
     # 追加代理配置
     cat "$BASE_PATH/deconfig/proxy.config" >> "$BASE_PATH/$BUILD_DIR/.config"
@@ -99,7 +99,7 @@ append_self_depends() {
 
 apply_config
 remove_uhttpd_dependency
-append_self_depends
+#append_self_depends
 
 cd "$BASE_PATH/$BUILD_DIR"
 make defconfig
